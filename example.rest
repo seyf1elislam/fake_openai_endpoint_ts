@@ -1,0 +1,12 @@
+@server = http://127.0.0.1:3000
+
+# get all models
+GET  {{server}}/v1/models
+
+# compilation of chat
+POST {{server}}/v1/models/compile
+{
+  "model": "chat",
+  "language": "en"
+}
+

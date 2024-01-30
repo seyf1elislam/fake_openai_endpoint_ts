@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    /* Modules */
+    "module": "commonjs",                                /* Specify what module code is generated. */
+    "moduleResolution": "node",                          /* Specify how TypeScript looks up a file from a given module specifier. */
+    "target": "es2022",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "sourceMap": true,                                /* Create source map files for emitted JavaScript files. */
+    "outDir": "./dist",                                   /* Specify an output folder for all emitted files. */
+  "esModuleInterop": true,                           /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */ 
+  },
+   "include": ["./src/**/*"],                             /* Specify an array of glob patterns that match TypeScript files to be included in compilation. */
+   "exclude": ["node_modules", "**/*.spec.ts" , "./dist"]           /* Specify an array of glob patterns for files to exclude from compilation. */
+  }
