@@ -1,22 +1,19 @@
-// const express = require("express");
-import express, { Request, Response } from "express";
-const app = express();
-
+import express, { Express, Request, Response } from "express";
 const jsonParser = express.json({ limit: "100mb" });
 import { registerEndpoints } from "./registerEndpoints";
+
+const PORT: number = 3000;
+const app: Express = express();
 registerEndpoints(app, jsonParser);
 
-// Custom middleware to log requests
-// app.use((req, res, next) => {
-//     console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
-//     next();
-//   });
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
+  res.send(`<h2 align="center">Hello World (>.<)</h2>
+   <h3 align="center"> FakeOpenAI api EndPooint  runing here http://localhost:${PORT}/v1</h3>
+    `);
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("---------------------------------------------");
-  console.log("FakeOpenAI api  runing on http://127.0.0.1:3000/v1");
+  console.log("FakeOpenAI api EndPooint  runing on http://127.0.0.1:3000/v1");
   console.log("---------------------------------------------");
 });

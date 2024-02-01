@@ -12,6 +12,7 @@ function registerEndpoints(app: Express, jsonParser: NextHandleFunction) {
   app.get("/v1/models", jsonParser, handleModelsRequest);
   app.post("/v1/chat/completions", jsonParser, handleCompletionRequest);
 }
+
 //this is for nodejs
 // module.exports = {
 //   registerEndpoints,

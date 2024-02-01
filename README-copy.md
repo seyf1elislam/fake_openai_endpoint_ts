@@ -14,14 +14,19 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing
 
 1. Clone the repository:
+
 ```sh
 git clone https://github.com/seyf1elislam/fake_openai_endpoint_ts
 ```
+
 2. Navigate to the project directory:
+
 ```sh
 cd fake_openai_api_endpoint
 ```
+
 3. Install the dependencies:
+
 ```sh
 npm install
 ```
@@ -42,7 +47,6 @@ The application will start and listen on `http://127.0.0.1:3000/v1`.
 - Express
 - TypeScript
 
-
 ## API Endpoints
 
 This application provides two main API endpoints:
@@ -61,39 +65,41 @@ curl http://127.0.0.1:3000/v1/models
 
 This endpoint is used to get completions for a given prompt. To use it, send a POST request to `http://127.0.0.1:3000/v1/completions` with a JSON body containing the `model` and `prompt` parameters.
 
-Example:
-# Non-streaming example
+## Example:
 
 ```python
-import requests
-def get_completion(prompt):
-    url = "http://127.0.0.1:3000/v1/completions"
-    data = {
-        "model": "gpt-3.5-turbo",
-        "prompt": prompt
-    }
-    response = requests.post(url, json=data)
-    completion = response.json()
-    return completion
 
-# Streaming example
+import openai
+client = openai.OpenAI(
+    api_key='...',
+    base_url ="http://127.0.0.1:3000/v1"
+)
+```
 
-def stream_completion(prompt):
-    url = "http://127.0.0.1:3000/v1/completions/stream"
-    data = {
-        "model": "gpt-3.5-turbo",
-        "prompt": prompt
-    }
-    response = requests.post(url, json=data, stream=True)
-    for chunk in response.iter_content(chunk_size=1024):
-        # Process the streamed completion chunk
-        completion = json.loads(chunk)["choices"][0]["delta"]["content"] 
-        # Do something with the completion
+### Non-streaming example
 
+```python
+# Non Streaming example
+completion = client.chat.completions.create(
+    model="GPTforST",
+    messages=[
+        {
+            "role": "user",
+            "content": "How do I output all files in a directory using Python?",
+        },
+    ],
+)
+print(completion.choices[0].message.content)
+```
 
-# Example usage
+### Streaming example
 
-prompt = "Once upon a time"
-non_streaming_completion = get_completion(prompt)
-streaming_completion = stream_completion(prompt)
+```python
+stream = client.chat.completions.create(
+    model="gpt",
+    messages=[{"role": "user", "content": "Say this is a test"}],
+    stream=True,
+)
+for chunk in stream._iterator:
+    print(chunk.choices[0].delta.content or "-" , end=" ")
 ```
