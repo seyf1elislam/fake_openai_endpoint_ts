@@ -61,10 +61,10 @@ curl http://127.0.0.1:3000/v1/models
 
 This endpoint is used to get completions for a given prompt. To use it, send a POST request to `http://127.0.0.1:3000/v1/completions` with a JSON body containing the `model` and `prompt` parameters.
 
-Example:
-# Non-streaming example
+#### Example:
 
 ```python
+# Non-streaming example
 import requests
 def get_completion(prompt):
     url = "http://127.0.0.1:3000/v1/completions"
